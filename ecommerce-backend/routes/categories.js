@@ -10,6 +10,7 @@ cloudinary.config({
   api_secret: process.env.cloudinary_Config_api_secret,
 });
 
+//get method
 router.get("/", async (req, res) => {
   const categoryList = await Category.find();
   if (!categoryList) {
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
   }
   res.send(categoryList);
 });
-
+//get by id
 router.get("/:id", async (req, res) => {
   const category = await Category.findById(req.params.id);
   if (!category) {
@@ -27,7 +28,7 @@ router.get("/:id", async (req, res) => {
   }
   return res.status(200).send(category);
 });
-
+//update method
 router.put("/:id", async (req, res) => {
   const limit = pLimit(2);
 
@@ -63,6 +64,9 @@ router.put("/:id", async (req, res) => {
       name: req.body.name,
       images: imageurl,
       color: req.body.color,
+       description: req.body.description, // optional
+  isFeatured: req.body.isFeatured,   // optional
+  parentCategory: req.body.parentCategory 
     },
     { new: true }
   );
@@ -75,11 +79,11 @@ router.put("/:id", async (req, res) => {
   }
   res.send(category);
 });
-
+//delete method
 router.delete("/:id", async (req, res) => {
-  const deletedUser = await Category.findByIdAndDelete(req.params.id);
+  const deletedCat = await Category.findByIdAndDelete(req.params.id);
 
-  if (!deletedUser) {
+  if (!deletedCat) {
     res.status(404).json({
       message: "category not found",
       success: false,
@@ -91,57 +95,15 @@ router.delete("/:id", async (req, res) => {
     success: true,
   });
 });
-// router.post('/create', async (req,res)=>{
-//     console.log("asmat");
-//     const limit=pLimit(2);
-//      console.log("asmat");
-//     const imagesToUpload=req.body.images.map((image)=>{
-//          console.log("asmat");
-//         return limit(async ()=>{
-//              console.log("asmat");
-//             const result =await cloudinary.uploader.upload(image);
-//             return result;
-
-//         })
-//     });
-
-//     const uploadStatus=await Promise.all(imagesToUpload);
-//      console.log("asmat");
-//     const imageurl=uploadStatus.map((item)=>{
-//          console.log("asmat");
-//        return item.secure_url
-//     })
-
-//     if(!uploadStatus){
-//         return res.status(500).json({
-//             error:"Image can not upload..",
-//             status:false
-//         })
-//     }
-//     let category=new Category({
-//         name:req.body.name,
-//         image:imageurl,
-//         color:req.body.color
-//     });
-//     if(!category){
-//         res.status(500).json({
-//             error:err,
-//             succes:false
-//         })
-//     }
-//      try {
-//         category = await category.save();
-//         res.status(201).json(category); // Send response
-//     } catch (err) {
-//         res.status(500).json({
-//             error: err.message,
-//             success: false
-//         });
-//     }
-
-// });
+//create method
 router.post("/create", async (req, res) => {
   const limit = pLimit(2);
+ if (!Array.isArray(req.body.images)) {
+    return res.status(400).json({
+      success: false,
+      error: "Images must be provided as an array",
+    });
+  }
 
   try {
     const imagesToUpload = req.body.images.map((image) => {
@@ -175,6 +137,9 @@ router.post("/create", async (req, res) => {
       name: req.body.name,
       images: imageurl,
       color: req.body.color,
+       description: req.body.description, // optional
+  isFeatured: req.body.isFeatured,   // optional
+  parentCategory: req.body.parentCategory 
     });
 
     if (!category) {
@@ -201,6 +166,14 @@ router.post("/create", async (req, res) => {
       success: false,
     });
   }
+});
+// GET /api/categories/:name
+router.get("/byname/:name", async (req, res) => {
+  const category = await Category.findOne({ name: req.params.name });
+  if (!category) {
+    return res.status(404).json({ success: false, message: "Category not found" });
+  }
+  res.status(200).json(category);
 });
 
 module.exports = router;

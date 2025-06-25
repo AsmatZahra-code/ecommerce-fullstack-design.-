@@ -13,12 +13,13 @@ app.use(bodyParser.json());
 // Routes
 const categoryRoutes=require("./routes/categories");
 const productRoutes=require("./routes/products");
-
+const supplierRoutes=require("./routes/suppliers");
+const userRoutes = require('./routes/users');
 
 app.use('/api/category',categoryRoutes);
 app.use('/api/product',productRoutes);
-
-
+app.use('/api/supplier',supplierRoutes);
+app.use("/api/user", userRoutes);
 // Database
 mongoose.connect(process.env.CONNECTION_STRING,{
     useNewUrlParser:true,

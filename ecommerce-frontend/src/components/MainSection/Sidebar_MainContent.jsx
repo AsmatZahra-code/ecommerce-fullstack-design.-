@@ -1,7 +1,16 @@
 
-import React, { useState } from 'react';
-
+import React, { useState,useEffect } from 'react';
+import {
+  fetchDataFromApi,
+} from '../../utils/api.js';
 const Sidebar_MainContent = () => {
+
+  const [data,setData]=useState([]);
+  useEffect(()=>{
+    fetchDataFromApi("/api/product").then((res)=>{
+      setData(res);
+    })
+  },[])
   const categories = [
     'Mobile accessory',
     'Electronics',
@@ -181,8 +190,10 @@ const [featuresList, setFeaturesList] = useState([
    // Pagination Logic
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  // const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+  // const totalPages = Math.ceil(products.length / itemsPerPage);
+const currentProducts = data.slice(indexOfFirstItem, indexOfLastItem);
+const totalPages = Math.ceil(data.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
@@ -321,7 +332,7 @@ const [featuresList, setFeaturesList] = useState([
         <section className="flex-1">
           <div className="flex flex-col sm:flex-row items-center justify-between mb-4 bg-white p-4 rounded-lg shadow-sm">
             <span className="text-gray-700 text-sm mb-2 sm:mb-0">
-              <span className="font-semibold">{products.length} items</span> in Mobile accessory
+              <span className="font-semibold">{data.length} items</span> in Mobile accessory
             </span>
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-gray-700 w-full sm:w-auto">
               <label className="flex items-center">
@@ -367,7 +378,7 @@ const [featuresList, setFeaturesList] = useState([
 
           {/* Product Cards Container - Conditional Styling */}
           <div className={isListView ? 'flex flex-col gap-4' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'}>
-            {currentProducts.map((product) => (
+            {/* {currentProducts.map((product) => (
               <div
                 key={product.id}
                 className={`bg-white rounded-lg shadow-sm overflow-hidden p-4 ${
@@ -403,7 +414,44 @@ const [featuresList, setFeaturesList] = useState([
                   </button>
                 </div>
               </div>
-            ))}
+            ))} */}
+            {currentProducts.map((product, index) => (
+  <div
+    key={index}
+    className={`bg-white rounded-lg shadow-sm overflow-hidden p-4 ${
+      isListView ? 'flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-6' : 'flex flex-col items-center'
+    }`}
+  >
+    <img
+      src={product.images?.[0]}
+      alt={product.name}
+      className={`object-contain ${isListView ? 'w-52 h-52 flex-shrink-0' : 'w-32 h-32 mb-4'}`}
+      onError={(e) => {
+        e.target.onerror = null;
+        e.target.src = "https://placehold.co/150x150/e0e0e0/000000?text=No+Image";
+      }}
+    />
+    <div className={`text-center ${isListView ? 'sm:text-left flex-grow' : ''}`}>
+      <h4 className="font-semibold text-gray-900 mb-1">{product.name}</h4>
+      <p className="text-xl font-bold text-red-600 mb-1">
+        ${product.price.toFixed(2)}
+      </p>
+      <p className="text-sm text-gray-600 mb-2">
+        ⭐ {product.rating} ({product.numReviews} reviews)
+        {product.countInStock > 0 && (
+          <span className="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full ml-2">
+            In Stock
+          </span>
+        )}
+      </p>
+      <p className="text-xs text-gray-700 mb-3 leading-tight">{product.description}</p>
+      <button className="text-blue-600 hover:underline text-sm font-medium">
+        View details
+      </button>
+    </div>
+  </div>
+))}
+
           </div>
            {/* Pagination Controls */}
           <div className="flex flex-col sm:flex-row justify-between items-center mt-6 bg-white p-4 rounded-lg shadow-sm">
