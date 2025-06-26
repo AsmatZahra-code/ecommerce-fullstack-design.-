@@ -28,7 +28,7 @@ const SellerInfo = ({ supplier, productId, userId }) => {
 
     try {
       await axios.post(
-        'http://localhost:4000/api/user/wishlist/add',
+        `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/user/wishlist/add`,
         { productId },
         {
           headers: {

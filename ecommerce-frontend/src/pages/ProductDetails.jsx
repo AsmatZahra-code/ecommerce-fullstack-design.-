@@ -19,7 +19,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
 
    useEffect(() => {
-    console.log("Product ID:", id);
+   
     const loadProduct = async () => {
       const data = await fetchDataFromApi(`/api/product/${id}`);
       setProduct(data);
