@@ -34,96 +34,7 @@ const [featuresList, setFeaturesList] = useState([
     'See all',
   ];
 
-  const products = [
-    {
-      id: 1,
-      name: 'Canon Camera EOS 2000, Black 10x zoom',
-      price: 998.00,
-      originalPrice: 1128.00,
-      rating: 7.5,
-      orders: 154,
-      shipping: 'Free Shipping',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      image: '/src/components/BlockItemsGroup/assets/OrangeWPMobile33.PNG',
-    },
-    {
-      id: 2,
-      name: 'GoPro HERO6 4K Action Camera - Black',
-      price: 998.00,
-      originalPrice: null,
-      rating: 7.5,
-      orders: 154,
-      shipping: 'Free Shipping',
-      description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-      image: '/src/components/SaleSection/assets/camera_28.PNG',
-    },
-    {
-      id: 3,
-      name: 'Modern Smartphone Pro X',
-      price: 799.00,
-      originalPrice: 899.00,
-      rating: 8.2,
-      orders: 210,
-      shipping: 'Free Shipping',
-      description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      image: '/src/components/SaleSection/assets/mobile_23.PNG',
-    },
-    {
-      id: 4,
-      name: 'Ultra Slim Laptop 13"',
-      price: 1299.00,
-      originalPrice: 1499.00,
-      rating: 8.9,
-      orders: 95,
-      shipping: 'Free Shipping',
-      description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      image: '/src/components/SaleSection/assets/Laptop_34.PNG',
-    },
-    {
-      id: 5,
-      name: 'Smartwatch Series 7',
-      price: 249.00,
-      originalPrice: null,
-      rating: 7.8,
-      orders: 320,
-      shipping: 'Free Shipping',
-      description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-      image: '/src/components/SaleSection/assets/SmartWatch_35.PNG',
-    },
-    {
-      id: 6,
-      name: 'Premium Wireless Headphones',
-      price: 199.00,
-      originalPrice: 249.00,
-      rating: 8.5,
-      orders: 180,
-      shipping: 'Free Shipping',
-      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.',
-      image: '/src/components/SaleSection/assets/headphones_29.PNG',
-    },
-    {
-      id: 7,
-      name: 'Premium Wireless Headphones',
-      price: 199.00,
-      originalPrice: 249.00,
-      rating: 8.5,
-      orders: 180,
-      shipping: 'Free Shipping',
-      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.',
-      image: '/src/components/SaleSection/assets/headphones_29.PNG',
-    },
-    {
-      id: 8,
-      name: 'Premium Wireless Headphones',
-      price: 199.00,
-      originalPrice: 249.00,
-      rating: 8.5,
-      orders: 180,
-      shipping: 'Free Shipping',
-      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.',
-      image: '/src/components/SaleSection/assets/SmartWatch_35.PNG',
-    },
-  ];
+
   const conditions = [
     { label: 'Any', value: 'any' },
     { label: 'Refurbished', value: 'refurbished' },
@@ -200,7 +111,7 @@ const totalPages = Math.ceil(data.length / itemsPerPage);
     <div className="bg-slate-50 min-h-screen py-6 px-4 md:px-24 ">
       <div className="flex flex-col md:flex-row gap-6">
         {/* Left Sidebar */}
-        <aside className="md:w-1/4 lg:w-1/5  p-6 rounded-lg shadow-sm">
+        <aside className="hidden md:block md:w-1/4 lg:w-1/5  p-6 rounded-lg shadow-sm">
           {/* Category Section */}
           <div className="mb-6 pb-4 border-b border-gray-200">
             <h3 className="font-bold text-lg mb-4 text-gray-800">Category</h3>
@@ -332,7 +243,7 @@ const totalPages = Math.ceil(data.length / itemsPerPage);
         <section className="flex-1">
           <div className="flex flex-col sm:flex-row items-center justify-between mb-4 bg-white p-4 rounded-lg shadow-sm">
             <span className="text-gray-700 text-sm mb-2 sm:mb-0">
-              <span className="font-semibold">{data.length} items</span> in Mobile accessory
+              <span className="font-semibold">{data.length} items</span> 
             </span>
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm text-gray-700 w-full sm:w-auto">
               <label className="flex items-center">

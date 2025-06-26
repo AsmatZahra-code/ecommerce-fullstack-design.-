@@ -1,7 +1,7 @@
 // src/pages/admin/ProductList.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchDataFromApi } from "../../utils/api"; // Adjust path based on your structure
+import { fetchDataFromApi, deleteData  } from "../../utils/api"; // Adjust path based on your structure
 import axios from "axios";
 
 const ProductList = () => {
@@ -18,19 +18,27 @@ const ProductList = () => {
     }
   };
 
-  const deleteProduct = async (id) => {
-    try {
-      await axios.delete(`/api/products/${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      fetchProducts(); // Refresh list after deletion
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
-  };
-
+  // const deleteProduct = async (id) => {
+  //   try {
+  //     await axios.delete(`/api/products/${id}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     });
+  //     fetchProducts(); // Refresh list after deletion
+  //   } catch (error) {
+  //     console.error("Error deleting product:", error);
+  //   }
+  // };
+const deleteProduct = async (id) => {
+  const result = await deleteData(`/api/product/${id}`, localStorage.getItem("token"));
+  
+  if (result?.success) {
+    fetchProducts(); // Refresh after deletion
+  } else {
+    console.error("Failed to delete product:", result?.message || result);
+  }
+};
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -40,7 +48,7 @@ const ProductList = () => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">📦 Product List</h2>
         <Link
-          to="/admin/products/create"
+          to="/admin/product/create"
           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
         >
           ➕ Add New Product
@@ -69,7 +77,7 @@ const ProductList = () => {
                   <td className="px-4 py-3">{p.countInStock}</td>
                   <td className="px-4 py-3 flex gap-2">
                     <Link
-                      to={`/admin/products/edit/${p._id}`}
+                      to={`/admin/product/edit/${p._id}`}
                       className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
                     >
                       Edit

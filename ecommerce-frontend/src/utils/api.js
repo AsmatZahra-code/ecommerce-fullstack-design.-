@@ -145,6 +145,20 @@ export const fetchCategoryByName = async (categoryName) => {
   }
 };
 
+
+export const fetchProductsByCategoryName = async (categoryName) => {
+  try {
+    const encodedCategory = encodeURIComponent(categoryName);
+    const { data } = await axios.get(
+      `${BASE_URL}/api/product/by-category/${encodedCategory}`
+    );
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch products by category name:", error);
+    return null;
+  }
+};
+
 // 🔐 SIGN UP: POST /api/users/register
 export const signUpUser = async (formData) => {
   try {
@@ -172,4 +186,73 @@ export const signInUser = async (formData) => {
     return err.response?.data || err;
   }
 };
+export const fetchCart = async (token) => {
+  try {
+    const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_BASE_URL}/api/cart`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return data;
+  } catch (err) {
+    console.error('Error fetching cart:', err);
+    return [];
+  }
+};
 
+export const addToCart = async (item, token) => {
+  return await axios.post(
+    'http://localhost:4000/api/cart',
+    item,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const removeFromCart = async (productId, token) => {
+  try {
+    const res = await axios.delete(`${BASE_URL}/api/cart/remove/${productId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (err) {
+    console.error("Remove from cart error:", err);
+    return null;
+  }
+};
+
+export const clearCart = async (token) =>
+  deleteData('/api/cart/clear', token);
+
+
+export const fetchWishlist = (token) =>
+  fetchDataFromApi("/api/user/wishlist", token);
+
+// export const addToWishlist = (productId, token) =>
+//   postData("/api/user/wishlist/add", { productId }, token);
+
+export const addToWishlist = async (body, token) => {
+  try {
+    const res = await axios.post(
+      "http://localhost:4000/api/user/wishlist/add",
+      body,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data;
+  } catch (err) {
+    console.error("addToWishlist error:", err);
+    throw err;
+  }
+};
+
+export const removeFromWishlist = (productId, token) =>
+  deleteData(`/api/user/wishlist/remove/${productId}`, token);

@@ -15,11 +15,14 @@ const categoryRoutes=require("./routes/categories");
 const productRoutes=require("./routes/products");
 const supplierRoutes=require("./routes/suppliers");
 const userRoutes = require('./routes/users');
+const cartRoutes = require('./routes/carts');
+
 
 app.use('/api/category',categoryRoutes);
 app.use('/api/product',productRoutes);
 app.use('/api/supplier',supplierRoutes);
 app.use("/api/user", userRoutes);
+app.use('/api/cart', cartRoutes);
 // Database
 mongoose.connect(process.env.CONNECTION_STRING,{
     useNewUrlParser:true,

@@ -9,7 +9,7 @@ const Sidebar = () => {
       <ul className="space-y-4">
         <li>
           <Link
-            to="/admin/products"
+            to="/admin/product"
             className="block py-2 px-4 rounded hover:bg-gray-700 transition-colors"
           >
             🛍 Products
@@ -17,21 +17,21 @@ const Sidebar = () => {
         </li>
         <li>
           <Link
-            to="/admin/products/create"
+            to="/admin/product/create"
             className="block py-2 px-4 rounded hover:bg-gray-700 transition-colors"
           >
             ➕ Add Product
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
-            to="/admin/products/edit/:id"
+            to="/admin/product/edit/:id"
             className="block py-2 px-4 rounded hover:bg-gray-700 transition-colors"
           >
             ✏️ Edit Product
           </Link>
-        </li>
-        {/* Add more navigation items as needed */}
+        </li> */}
+        
       </ul>
     </aside>
   );

@@ -16,20 +16,20 @@ const InquirySection = () => {
       {/* Content Container */}
       <div className="relative z-10 mx-auto max-w-6xl flex flex-col lg:flex-row lg:items-start lg:justify-between gap-14">
   {/* Text Block */}
-  <div className="text-white w-full lg:w-1/2 text-center lg:text-left ">
-    <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+  <div className="text-white w-full lg:w-1/2  text-left ">
+    <h2 className="text-3xl md:text-4xl font-bold md:mb-4 leading-tight">
       An easy way to send
       <br />
       requests to all suppliers
     </h2>
-    <p className="text-blue-100 text-lg">
+    <p className="hidden md:block text-blue-100 text-lg">
       Lorem ipsum dolor sit amet, consectetur adipisicing<br></br>
       elit, sed do eiusmod tempor incididunt.
     </p>
   </div>
 
         {/* Right Section: Inquiry Form */}
-        <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg lg:w-1/2 w-full max-w-md">
+        <div className="hidden md:block bg-white p-6 md:p-8 rounded-lg shadow-lg lg:w-1/2 w-full max-w-md">
           <h3 className="text-xl font-semibold text-black mb-6">Send quote to suppliers</h3>
           <form className="space-y-4">
             {/* What item you need? */}
@@ -93,6 +93,15 @@ const InquirySection = () => {
             </button>
           </form>
         </div>
+         {/* Only button for mobile */}
+  <div className="block md:hidden">
+    <button
+      type="submit"
+      className=" px-4 bg-blue-600 text-white font-semibold py-2.5 rounded-md hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+    >
+      Send inquiry
+    </button>
+  </div>
       </div>
     </section>
     </div>

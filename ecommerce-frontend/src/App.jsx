@@ -12,12 +12,13 @@ import ProductList from "./pages/admin/ProductList";
 import ProductCreate from "./pages/admin/ProductCreate";
 import ProductEdit from "./pages/admin/ProductEdit";
 import AdminLayout from "./Layout/AdminLayout";
-
-import RequireAdmin from "./components/Admin/RequireAdmin";
-
+import SearchResults from "./pages/SearchResults";
+// import RequireAdmin from "./components/Admin/RequireAdmin";
+import { AuthProvider,useAuth } from './context/AuthContext'; // 👈 import
 const App = () => {
   return (
     <div>
+        <AuthProvider> {/* ✅ Wrap the app with AuthProvider */}
       <Router>
         <Routes>
            {/* Public Routes */}
@@ -27,15 +28,17 @@ const App = () => {
     <Route path="/Cart" element={<Cart />} />
     <Route path="/signIn" element={<SignIn />} />
     <Route path="/signUp" element={<SignUp />} />
+     <Route path="/search/category/:categoryName" element={<SearchResults />} />
 
     {/* Admin Routes */}
     <Route path="/admin" element={<AdminLayout />}>
-      <Route path="products" element={<ProductList />} />
-      <Route path="products/create" element={<ProductCreate />} />
-      <Route path="products/edit/:id" element={<ProductEdit />} />
+      <Route path="product" element={<ProductList />} />
+      <Route path="product/create" element={<ProductCreate />} />
+      <Route path="product/edit/:id" element={<ProductEdit />} />
     </Route>         {/* Add more routes here */}
         </Routes>
       </Router>
+         </AuthProvider>
     </div>
   );
 };

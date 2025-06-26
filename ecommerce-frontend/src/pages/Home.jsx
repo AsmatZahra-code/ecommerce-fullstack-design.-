@@ -14,7 +14,7 @@ import SectionRecommend from '../components/SectionRecommend/SectionRecommend.js
 import SectionService from '../components/SectionService/SectionService.jsx'
 import SuppliersSection from '../components/SuppliersSection/SupplierSection.jsx'
 import Newsletter from '../components/Newsletter/Newsletter.jsx'
-import Footer from '../components/footer/footer.jsx'
+import Footer from '../components/footer/Footer.jsx'
 // const Home = () => {
 //      const homeAndOutdoorData = {
 //     imageSrc: "/src/components/BlockItemsGroup/assets/HomeAndOutdoor_92.png", // Your original image path
@@ -164,8 +164,8 @@ const getHeroFromCategory = (category) => ({
         const [homeFeat, homeCat, electronicsCat, electronicsFeat] = await Promise.all([
           fetchFeaturedProductsByCategory("Home and Outdoor"),
           fetchCategoryByName("Home and Outdoor"),
-          fetchCategoryByName("Customer electronics and gadgets"),
-          fetchFeaturedProductsByCategory("Customer electronics and gadgets"),
+          fetchCategoryByName("Customer electronics"),
+          fetchFeaturedProductsByCategory("Customer electronics"),
         ]);
  console.log("homeCategory from API:", homeCat);
         setHomeCategory(homeCat);

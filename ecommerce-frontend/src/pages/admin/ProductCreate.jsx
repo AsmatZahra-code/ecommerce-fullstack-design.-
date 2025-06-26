@@ -191,10 +191,24 @@ const ProductCreate = () => {
     }
   };
 
-  const handleAddNewSupplier = async () => {
+  // const handleAddNewSupplier = async () => {
+  //   try {
+  //     const res = await axios.post("/api/supplier/create", newSupplier);
+  //     const added = res.data.supplier;
+  //     setSuppliers((prev) => [...prev, added]);
+  //     setFormData((prev) => ({ ...prev, supplier: added._id }));
+  //     setNewSupplier({ name: "", company: "", country: "", city: "", email: "", phone: "" });
+  //     setShowNewSupplierInput(false);
+  //   } catch (err) {
+  //     console.error("Error adding supplier:", err);
+  //     alert("Failed to add supplier");
+  //   }
+  // };
+const handleAddNewSupplier = async () => {
     try {
-      const res = await axios.post("/api/supplier/create", newSupplier);
-      const added = res.data.supplier;
+      const res = await axios.post(`${import.meta.env.VITE_REACT_APP_BASE_URL}/api/supplier/create`, newSupplier);
+      const added = res.data.supplier || res.data;
+
       setSuppliers((prev) => [...prev, added]);
       setFormData((prev) => ({ ...prev, supplier: added._id }));
       setNewSupplier({ name: "", company: "", country: "", city: "", email: "", phone: "" });
@@ -204,21 +218,24 @@ const ProductCreate = () => {
       alert("Failed to add supplier");
     }
   };
-
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post("/api/product/create", formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      navigate("/admin/products");
-    } catch (err) {
-      console.error("Product creation failed", err);
-      alert("Error creating product. Check console for details.");
+  e.preventDefault();
+  try {
+    console.log("Before post, payload:", formData);
+    const result = await postData("/api/product/create", formData, localStorage.getItem("token"));
+console.log("After post result:", result);
+    if (result && result._id) {
+      navigate("/admin/product");
+    } else {
+      console.error("Product creation failed response:", result);
+      alert("Product creation failed.");
     }
-  };
+  } catch (err) {
+    console.error("Error creating product:", err);
+    alert("Error creating product. Check console for details.");
+  }
+};
+
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-md rounded-md">
