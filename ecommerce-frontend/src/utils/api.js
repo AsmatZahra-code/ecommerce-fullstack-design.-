@@ -11,6 +11,7 @@ const getHeaders = (token) => {
 // ✅ GET Request (optionally authenticated)
 export const fetchDataFromApi = async (url, token = null) => {
   try {
+    console.log(BASE_URL);
     const { data } = await axios.get(BASE_URL + url, {
       headers: getHeaders(token),
     });

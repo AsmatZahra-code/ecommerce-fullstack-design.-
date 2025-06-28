@@ -5,8 +5,8 @@ import Home from "./pages/Home";
 import ProductListing from "./pages/ProductListing";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
-import SignIn from "./pages/signIn";
-import SignUp from "./pages/signUp";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 import ProductList from "./pages/admin/ProductList";
 import ProductCreate from "./pages/admin/ProductCreate";
