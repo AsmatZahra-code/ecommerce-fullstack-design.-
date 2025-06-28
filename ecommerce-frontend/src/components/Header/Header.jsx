@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import {
   FaUser,
@@ -9,8 +8,10 @@ import {
   FaHeart,
 } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { fetchDataFromApi } from "../../utils/api";
+import logoImage from "./assets/logo-colored.PNG";
+import searchButtonImage from "./assets/btn-group.PNG";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,7 +27,7 @@ const Header = () => {
 
   // Load user from localStorage
 
-   useEffect(() => {
+  useEffect(() => {
     const pathParts = location.pathname.split("/");
     if (pathParts[1] === "search" && pathParts[2] === "category") {
       const query = decodeURIComponent(pathParts[3] || "");
@@ -34,7 +35,7 @@ const Header = () => {
       setSelectedCategory(query);
     }
   }, [location.pathname]);
-  
+
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -109,19 +110,14 @@ const Header = () => {
           </div>
 
           <div>
-            <img
-              src="/src/components/Header/assets/logo-colored.PNG"
-              alt="brand logo"
-              className="h-8 md:h-10"
-            />
+            <img src={logoImage} alt="brand logo" className="h-8 md:h-10" />
           </div>
-          
         </div>
 
         {/* Desktop Search Bar */}
         <div className="hidden md:block border-2 border-primary rounded-lg h-fit pl-2 w-85">
           <form className="flex" onSubmit={handleSearch}>
-             <input
+            <input
               className="w-1/2 pr-11 mr-20 outline-none"
               type="text"
               placeholder="Search"
@@ -144,21 +140,17 @@ const Header = () => {
               ))}
             </select>
             <button type="submit">
-              <img
-                className="h-full"
-                src="/src/components/Header/assets/btn-group.PNG"
-                alt="Search"
-              />
+              <img className="h-full" src={searchButtonImage} alt="Search" />
             </button>
           </form>
         </div>
 
         {/* Action Icons */}
         <div className="flex items-center">
-           {/* Mobile Icons */}
-         <div className="flex md:hidden space-x-4 items-center">
-           <FaShoppingCart className="text-2xl text-gray-600" />
-           <FaUser className="text-2xl text-gray-600" />
+          {/* Mobile Icons */}
+          <div className="flex md:hidden space-x-4 items-center">
+            <FaShoppingCart className="text-2xl text-gray-600" />
+            <FaUser className="text-2xl text-gray-600" />
           </div>
           <div className="hidden md:flex justify-center relative">
             <ul className="flex space-x-6 items-center">
@@ -221,77 +213,80 @@ const Header = () => {
       </div>
 
       {/* Mobile Dropdown Menu */}
-     {isMobileMenuOpen && (
-  <div className="fixed inset-0 z-40 flex">
-    {/* Overlay */}
-    <div
-      className="fixed inset-0 bg-black opacity-30"
-      onClick={() => setIsMobileMenuOpen(false)}
-    ></div>
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 flex">
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black opacity-30"
+            onClick={() => setIsMobileMenuOpen(false)}
+          ></div>
 
-    {/* Sidebar */}
-    <div className="relative w-64 h-full bg-white z-50 shadow-lg overflow-y-auto">
-      {/* Top Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-200">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gray-300"></div>
-          <span className="text-sm text-gray-600">Sign in | Register</span>
+          {/* Sidebar */}
+          <div className="relative w-64 h-full bg-white z-50 shadow-lg overflow-y-auto">
+            {/* Top Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-gray-300"></div>
+                <span className="text-sm text-gray-600">
+                  Sign in | Register
+                </span>
+              </div>
+              <button onClick={() => setIsMobileMenuOpen(false)}>
+                <FaTimes className="text-xl text-gray-600" />
+              </button>
+            </div>
+
+            {/* Menu Items */}
+            <ul className="p-4 space-y-4 text-sm text-gray-700">
+              <li className="flex items-center gap-3">
+                <FaUser />
+                <span>Home</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <FaBars />
+                <span>Categories</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <FaHeart />
+                <span>Favorites</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <FaShoppingCart />
+                <span>My orders</span>
+              </li>
+
+              <hr />
+
+              <li className="flex items-center gap-3">
+                🌐
+                <span>English | USD</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <MdMessage />
+                <span>Contact us</span>
+              </li>
+              <li className="flex items-center gap-3">
+                🧾
+                <span>About</span>
+              </li>
+
+              <hr />
+
+              <li className="cursor-pointer">User agreement</li>
+              <li className="cursor-pointer">Partnership</li>
+              <li className="cursor-pointer">Privacy policy</li>
+            </ul>
+          </div>
         </div>
-        <button onClick={() => setIsMobileMenuOpen(false)}>
-          <FaTimes className="text-xl text-gray-600" />
-        </button>
-      </div>
-
-      {/* Menu Items */}
-      <ul className="p-4 space-y-4 text-sm text-gray-700">
-        <li className="flex items-center gap-3">
-          <FaUser />
-          <span>Home</span>
-        </li>
-        <li className="flex items-center gap-3">
-          <FaBars />
-          <span>Categories</span>
-        </li>
-        <li className="flex items-center gap-3">
-          <FaHeart />
-          <span>Favorites</span>
-        </li>
-        <li className="flex items-center gap-3">
-          <FaShoppingCart />
-          <span>My orders</span>
-        </li>
-
-        <hr />
-
-        <li className="flex items-center gap-3">
-          🌐
-          <span>English | USD</span>
-        </li>
-        <li className="flex items-center gap-3">
-          <MdMessage />
-          <span>Contact us</span>
-        </li>
-        <li className="flex items-center gap-3">
-          🧾
-          <span>About</span>
-        </li>
-
-        <hr />
-
-        <li className="cursor-pointer">User agreement</li>
-        <li className="cursor-pointer">Partnership</li>
-        <li className="cursor-pointer">Privacy policy</li>
-      </ul>
-    </div>
-  </div>
-)}
-
+      )}
     </div>
   );
 };
 
 export default Header;
- {/* Mobile Icons */}
+{
+  /* Mobile Icons */
+}
 //           <div className="flex md:hidden space-x-4 items-center">
 //             <FaShoppingCart className="text-2xl text-gray-600" />
 //             <FaUser className="text-2xl text-gray-600" />
