@@ -221,33 +221,71 @@ const Header = () => {
       </div>
 
       {/* Mobile Dropdown Menu */}
-      {isMobileMenuOpen && (
-        <div className="absolute left-4 top-12 w-48 bg-white z-30 p-6 shadow-lg border rounded-lg md:hidden">
-          <ul className="flex flex-col space-y-6">
-            <li
-              className="flex items-center text-gray-700 cursor-pointer"
-              onClick={handleProfileClick}
-            >
-              <FaUser className="text-xl mr-3" />
-              <span>Profile</span>
-            </li>
-            <li className="flex items-center text-gray-700">
-              <MdMessage className="text-xl mr-3" />
-              <span>Message</span>
-            </li>
-            <li className="flex items-center text-gray-700">
-              <FaHeart className="text-xl mr-3" />
-              <span>Orders</span>
-            </li>
-            <li className="flex items-center text-gray-700">
-              <a href="/Cart" className="flex items-center">
-                <FaShoppingCart className="text-xl mr-3" />
-                <span>My cart</span>
-              </a>
-            </li>
-          </ul>
+     {isMobileMenuOpen && (
+  <div className="fixed inset-0 z-40 flex">
+    {/* Overlay */}
+    <div
+      className="fixed inset-0 bg-black opacity-30"
+      onClick={() => setIsMobileMenuOpen(false)}
+    ></div>
+
+    {/* Sidebar */}
+    <div className="relative w-64 h-full bg-white z-50 shadow-lg overflow-y-auto">
+      {/* Top Header */}
+      <div className="flex items-center justify-between p-4 border-b border-gray-200">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-gray-300"></div>
+          <span className="text-sm text-gray-600">Sign in | Register</span>
         </div>
-      )}
+        <button onClick={() => setIsMobileMenuOpen(false)}>
+          <FaTimes className="text-xl text-gray-600" />
+        </button>
+      </div>
+
+      {/* Menu Items */}
+      <ul className="p-4 space-y-4 text-sm text-gray-700">
+        <li className="flex items-center gap-3">
+          <FaUser />
+          <span>Home</span>
+        </li>
+        <li className="flex items-center gap-3">
+          <FaBars />
+          <span>Categories</span>
+        </li>
+        <li className="flex items-center gap-3">
+          <FaHeart />
+          <span>Favorites</span>
+        </li>
+        <li className="flex items-center gap-3">
+          <FaShoppingCart />
+          <span>My orders</span>
+        </li>
+
+        <hr />
+
+        <li className="flex items-center gap-3">
+          🌐
+          <span>English | USD</span>
+        </li>
+        <li className="flex items-center gap-3">
+          <MdMessage />
+          <span>Contact us</span>
+        </li>
+        <li className="flex items-center gap-3">
+          🧾
+          <span>About</span>
+        </li>
+
+        <hr />
+
+        <li className="cursor-pointer">User agreement</li>
+        <li className="cursor-pointer">Partnership</li>
+        <li className="cursor-pointer">Privacy policy</li>
+      </ul>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
