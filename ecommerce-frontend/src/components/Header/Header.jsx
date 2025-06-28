@@ -10,8 +10,8 @@ import {
 import { MdMessage } from "react-icons/md";
 import { useNavigate, useLocation } from "react-router-dom";
 import { fetchDataFromApi } from "../../utils/api";
-import logoImage from "./assets/logo-colored.PNG";
-import searchButtonImage from "./assets/btn-group.PNG";
+import logoImage from "./assets/logo-colored.png";
+import searchButtonImage from "./assets/btn-group.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
