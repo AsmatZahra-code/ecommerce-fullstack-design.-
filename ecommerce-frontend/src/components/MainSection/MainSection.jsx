@@ -1,5 +1,6 @@
 import React from "react";
-
+import bannerImage from './assets/banner-board.png';
+import avatarImg from './assets/Avatar.png';
 const MainSection = () => {
   return (
     <section className=" bg-slate-50 py-6 px-4 md:px-24">
@@ -40,7 +41,7 @@ const MainSection = () => {
         <article className="w-full lg:w-[670px] h-[360px] relative lg:mr-5 overflow-hidden">
           <figure className="w-full h-full">
             <img
-              src="/src/components/MainSection/assets/banner-board.PNG"
+              src={bannerImage}
               alt="banner image"
               className="w-full h-full object-cover object-bottom-right"
               onError={(e) => {
@@ -69,7 +70,7 @@ const MainSection = () => {
           {/* User Profile Card */}
           <div className="bg-blue-100 p-2 rounded-md flex flex-col gap-2 w-[200px] h-[150px]">
             <div className="flex items-center gap-3">
-              <img src="/src/components/MainSection/assets/Avatar.PNG" alt="User Avatar" />
+              <img src={avatarImg} alt="User Avatar" />
               <div>
                 <p className="text-gray-800 font-semibold text-lg">Hi, user</p>
                 <p className="text-gray-600 text-sm">let's get started</p>
