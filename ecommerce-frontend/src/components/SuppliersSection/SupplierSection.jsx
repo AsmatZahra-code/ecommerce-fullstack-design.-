@@ -1,16 +1,25 @@
 import React from 'react';
+import ae from '../../assets/flags/arabic-emirates.png';
+import au from '../../assets/flags/au.png';
+import us from '../../assets/flags/us.png';
+import ru from '../../assets/flags/ru.png';
+import it from '../../assets/flags/it.png';
+import dk from '../../assets/flags/dk.png';
+import fr from '../../assets/flags/france.png';
+import cn from '../../assets/flags/cn.png';
+import gb from '../../assets/flags/britian.png';
 
 const suppliers = [
-  { id: 1, country: 'Arabic Emirates', url: 'shopname.ae', flag: '/src/components/SuppliersSection/assets/ArabicEmirates.png' },
-  { id: 2, country: 'Australia', url: 'shopname.au', flag: '/src/components/SuppliersSection/assets/AU.png' },
-  { id: 3, country: 'United States', url: 'shopname.us', flag: '/src/components/SuppliersSection/assets/US.png' },
-  { id: 4, country: 'Russia', url: 'shopname.ru', flag: '/src/components/SuppliersSection/assets/RU.png' },
-  { id: 5, country: 'Italy', url: 'shopname.it', flag: '/src/components/SuppliersSection/assets/IT.png' },
-  { id: 6, country: 'Denmark', url: 'denmark.com.dk', flag: '/src/components/SuppliersSection/assets/DK.png' },
-  { id: 7, country: 'France', url: 'shopname.fr', flag: '/src/components/SuppliersSection/assets/France.png' },
-  { id: 8, country: 'Arabic Emirates', url: 'shopname.ae', flag: '/src/components/SuppliersSection/assets/ArabicEmirates.png' },
-  { id: 9, country: 'China', url: 'shopname.as', flag: '/src/components/SuppliersSection/assets/CN.png' },
-  { id: 10, country: 'Great Britain', url: 'shopname.co.uk', flag: '/src/components/SuppliersSection/assets/Britian.png' },
+  { id: 1, country: 'Arabic Emirates', url: 'shopname.ae', flag: ae },
+  { id: 2, country: 'Australia', url: 'shopname.au', flag: au },
+  { id: 3, country: 'United States', url: 'shopname.us', flag: us },
+  { id: 4, country: 'Russia', url: 'shopname.ru', flag: ru },
+  { id: 5, country: 'Italy', url: 'shopname.it', flag: it },
+  { id: 6, country: 'Denmark', url: 'denmark.com.dk', flag: dk },
+  { id: 7, country: 'France', url: 'shopname.fr', flag: fr },
+  { id: 8, country: 'Arabic Emirates', url: 'shopname.ae', flag: ae },
+  { id: 9, country: 'China', url: 'shopname.as', flag: cn },
+  { id: 10, country: 'Great Britain', url: 'shopname.co.uk', flag: gb },
 ];
 
 const SupplierSection = () => {

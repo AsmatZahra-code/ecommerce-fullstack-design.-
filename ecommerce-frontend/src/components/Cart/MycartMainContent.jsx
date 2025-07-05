@@ -65,15 +65,7 @@ const MycartMainContent = () => {
     }
   };
 
-  // const handleSaveForLater = async (itemToSave) => {
-  //   try {
-  //     await removeFromCart(itemToSave.id, token);
-  //     setCartItems(cartItems.filter((item) => item.id !== itemToSave.id));
-  //     setSavedItems([...savedItems, itemToSave]);
-  //   } catch (error) {
-  //     console.error("Error saving for later:", error);
-  //   }
-  // };
+ 
   const handleSaveForLater = async (itemToSave) => {
   try {
     // 1. Remove from cart in DB
