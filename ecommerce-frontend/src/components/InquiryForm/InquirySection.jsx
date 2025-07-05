@@ -1,5 +1,5 @@
 import React from 'react';
-
+import bgImage from './mask_group.png'; 
 const InquirySection = () => {
   return (
      <div className="bg-slate-50 pt-6 px-4 md:px-24  ">
@@ -7,7 +7,7 @@ const InquirySection = () => {
     <section className=" py-8 px-4 md:px-24  relative overflow-hidden">
       {/* Background Image (adjust path as needed) */}
       <img
-        src="/src/components/InquiryForm/mask_group.png" // Placeholder: Replace with your actual background image
+        src={bgImage}// Placeholder: Replace with your actual background image
         alt="Warehouse background"
         className="absolute inset-0 w-full h-full object-cover " // Adjust opacity for desired dimming
         onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/1920x400/3b82f6/ffffff?text=Background+Image+Not+Found"; }}
