@@ -3,11 +3,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // Imported images from assets folder
-import watch from './assets/SmartWatch_35.PNG';
-import laptop from './assets/Laptop_34.PNG';
-import camera from './assets/camera_28.PNG';
-import headphones from './assets/headphones_29.PNG';
-import mobile from './assets/mobile_23.PNG';
+import watch from './assets/SmartWatch_35.png';
+import laptop from './assets/Laptop_34.png';
+import camera from './assets/camera_28.png';
+import headphones from './assets/headphones_29.png';
+import mobile from './assets/mobile_23.png';
 
 const SaleSection = () => {
   const products = [
