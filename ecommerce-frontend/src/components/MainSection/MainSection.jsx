@@ -1,6 +1,6 @@
 import React from "react";
 import bannerImage from './assets/banner-board.png';
-import avatarImg from './assets/Avatar.png';
+import avatarImg from './assets/avatar.png';
 const MainSection = () => {
   return (
     <section className=" bg-slate-50 py-6 px-4 md:px-24">
