@@ -11,6 +11,7 @@ const getHeaders = (token) => {
 // ✅ GET Request (optionally authenticated)
 export const fetchDataFromApi = async (url, token = null) => {
   try {
+    console.log(BASE_URL);
     const { data } = await axios.get(BASE_URL + url, {
       headers: getHeaders(token),
     });
@@ -144,7 +145,7 @@ export const fetchCart = async (token) => {
 
 export const addToCart = async (item, token) => {
   return await axios.post(
-    'http://localhost:4000/api/cart',
+    `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/cart`,
     item,
     {
       headers: {
@@ -181,7 +182,7 @@ export const fetchWishlist = (token) =>
 export const addToWishlist = async (body, token) => {
   try {
     const res = await axios.post(
-      "http://localhost:4000/api/user/wishlist/add",
+      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/user/wishlist/add`,
       body,
       {
         headers: {

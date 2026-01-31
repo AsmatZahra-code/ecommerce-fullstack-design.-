@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import logoImage from "../../assets/logo-colored.png";
 import {
   FaFacebookF,
   FaTwitter,
@@ -52,7 +53,7 @@ const Footer = () => {
         <div className="order-1 flex flex-col items-center md:items-start text-center md:text-left flex-[1_1_200px] ml-8">
           <div className="flex items-center mb-4">
             <img
-              src="/src/components/Header/assets/logo-colored.PNG"
+              src={logoImage}
               alt="brand logo"
               className="h-8 md:h-10"
             />
