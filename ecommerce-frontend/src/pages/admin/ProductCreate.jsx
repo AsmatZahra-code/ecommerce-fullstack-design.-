@@ -221,9 +221,9 @@ const handleAddNewSupplier = async () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    console.log("Before post, payload:", formData);
+    
     const result = await postData("/api/product/create", formData, localStorage.getItem("token"));
-console.log("After post result:", result);
+
     if (result && result._id) {
       navigate("/admin/product");
     } else {
